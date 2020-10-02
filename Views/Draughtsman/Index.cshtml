@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ArchitectureProjectManagement.Models.DraughtsmanViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1> Draughtsman</h1>
+<p>
+    <a asp-action="Create" class="" btn-btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DraughtsmanRegNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.CompanyContactNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.CompanyLogo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DraughtsmanRegNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.CompanyContactNo)
+                </td>
+                <td>
+                    @{
+                        var base64 = Convert.ToBase64String(item.Company.CompanyLogo);
+                        var logo = String.Format("data:image/jpg;base64,{0}", base64);
+                    }
+                    <img src="@logo" />
+                    @Html.DisplayFor(modelItem => item.Company.CompanyLogo)
+                </td>
+                <td>
+                    <a asp-page="/Edit" class="btn-btn-warning" asp-route-id="@item.DraughtsmanId">Edit</a> |
+                    <a asp-page="/Details" class="btn-btn-info" asp-route-id="@item.DraughtsmanId">Details</a> |
+                    <a asp-page="/Delete" class="btn-btn-danger" asp-route-id="@item.DraughtsmanId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+
+}

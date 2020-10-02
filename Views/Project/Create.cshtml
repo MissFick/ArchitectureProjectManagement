@@ -1,0 +1,100 @@
+﻿@model ArchitectureProjectManagement.Models.CreateProjectViewModel;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProjectName" class="control-label"></label>
+                <input asp-for="ProjectName" class="form-control" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDescription" class="control-label"></label>
+                <input asp-for="ProjectDescription" class="form-control" />
+                <span asp-validation-for="ProjectDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MunicipalRefNo" class="control-label"></label>
+                <input asp-for="MunicipalRefNo" class="form-control" />
+                <span asp-validation-for="MunicipalRefNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateofSubmission" class="control-label"></label>
+                <input asp-for="DateofSubmission" class="form-control" />
+                <span asp-validation-for="DateofSubmission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MunicipalAssessmentOfficer" class="control-label"></label>
+                <input asp-for="MunicipalAssessmentOfficer" class="form-control" />
+                <span asp-validation-for="MunicipalAssessmentOfficer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssessmentOfficerContactNo" class="control-label"></label>
+                <input asp-for="AssessmentOfficerContactNo" class="form-control" />
+                <span asp-validation-for="AssessmentOfficerContactNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssessmentOfficerEmail" class="control-label"></label>
+                <input asp-for="AssessmentOfficerEmail" class="form-control" />
+                <span asp-validation-for="AssessmentOfficerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DraughtsmanId" class="control-label"></label>
+                @Html.DropDownListFor(n => n.DraughtsmanId, new SelectList(Model.Draughtsmen, "Value", "Text"), "Select Draughtsman", new { @class = "form-control" })
+                <span asp-validation-for="DraughtsmanId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyId" class="control-label"></label>
+                @Html.DropDownListFor(n => n.PropertyId, new SelectList(Model.Properties, "Value", "Text"), "Select Property", new { @class = "form-control" })
+                <span asp-validation-for="PropertyId" class="text-danger"></span>
+            </div>
+            <!--<div class="form-group">
+        <label asp-for="DateModified" class="control-label"></label>
+        <input asp-for="DateModified" class="form-control" />
+        <span asp-validation-for="DateModified" class="text-danger"></span>
+    </div>-->
+            <!--<div class="form-group">
+                <label asp-for="ClientId" class="control-label"></label>
+                <input asp-for="ClientId" class="form-control" />
+                <span asp-validation-for="ClientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DraughtsmanId" class="control-label"></label>
+                <input asp-for="DraughtsmanId" class="form-control" />
+                <span asp-validation-for="DraughtsmanId" class="text-danger"></span>
+            </div>
+           <div class="form-group">
+        <label asp-for="DateModified" class="control-label"></label>
+        <ul class="list-group list-group-flush">
+            %foreach (var item in Model.Draughtsmen)
+            {
+                <li class="list-group-item">
+                    <h6>%item.ApplicationUser.FirstName <span class="badge badge-secondary">%item.ApplicationUser.LastName</span> </h6>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="form-group">
+        <label asp-for="DateModified" class="control-label"></label>
+        <ul class="list-group list-group-flush">
+            %foreach (var item in Model.Clients)
+            {
+                <li class="list-group-item">
+                    <h6>%item.ApplicationUser.FirstName <span class="badge badge-secondary">%item.ApplicationUser.LastName</span> </h6>
+                </li>
+            }
+        </ul>
+    </div>-->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

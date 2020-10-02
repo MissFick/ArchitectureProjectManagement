@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ArchitectureProjectManagement.Models.PropertyViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a asp-action="Create" class="" btn-btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyERF_LotNo)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PropertySGNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyAddress)
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyERF_LotNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertySGNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyAddress)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Property" class="btn-btn-warning" asp-route-id="@item.PropertyId">Update Property</a> |
+                    <a asp-action="Details" sp-controller="Property" class="btn-btn-info" asp-route-id="@item.PropertyId">Details</a> |
+                    @Html.HiddenFor(model => item.PropertyId)
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>

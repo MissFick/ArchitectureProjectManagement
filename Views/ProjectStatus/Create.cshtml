@@ -1,0 +1,47 @@
+﻿@model List<ArchitectureProjectManagement.Models.ProjectStatusViewModel>;
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h1> </h1>
+<p>
+    <!--<a asp-action="Create" class="" btn-btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Create New</a>-->
+</p>
+<div>
+   
+    <form method="post" asp-controller="ProjectStatus" asp-action="Create">
+        <div class="form-group">
+            @for (var i = 0; i < Model.Count(); i++)
+            {
+
+                @*<input type="hidden" asp-for="@checkedProjectItem.ProjectId" />*@
+
+            <div class="list-group-item">
+                @Html.HiddenFor(model => Model[i].ProjectId)
+                @Html.HiddenFor(model => Model[i].ProjectItemId)
+                @Html.DisplayFor(model => Model[i].ProjItem.ProjectItemName)
+                @Html.HiddenFor(model => Model[i].ProjItem.ProjectItemId)
+                @Html.HiddenFor(model => Model[i].ProjItem.ProjectItemName)
+                @Html.HiddenFor(model => Model[i].ProjItem.ProjectItemDescription)
+                @Html.CheckBoxFor(model => Model[i].IsChecked)
+                @Html.HiddenFor(model => Model[i].SiteId)
+            </div>
+
+            }
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add/ Update Project Milestones" class="btn btn-primary" />
+        </div>
+
+    </form>
+</div>
+        <!--a asp-action="CreateStatus" asp-controller="ProjectStatus" asp-route-id="model">Assign Milestones</a>
+        <a asp-page="/Details" class="btn-btn-info" asp-route-id="model.ProjectId">Details</a> |
+        <a asp-page="/Delete" class="btn-btn-danger" asp-route-id="model.ProjectId">Delete</a>-->
+
+
+
+
+@section Scripts{
+
+}

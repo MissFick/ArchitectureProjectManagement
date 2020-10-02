@@ -1,0 +1,163 @@
+﻿@model ArchitectureProjectManagement.Models.ProjectStatusItemViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+@Html.HiddenFor(model => model.ProjectId)
+<a asp-action="Edit" asp-controller="ProjectStatus" class="btn-btn-warning" asp-route-id="@Model.ProjectId">Update Project Progress</a> |
+<br/>
+<a asp-action="Details" asp-controller="Project" class="btn-btn-info" asp-route-id="@Model.ProjectId"> Back to Project Details</a> |
+
+
+<div class="row">
+    <div class="col-md-6">
+
+        @if (Model.ProjectItemStatuses.Count() > 0)
+        {
+            for (var i = 0; i < Model.ProjectItemStatuses.Count(); i++)
+            {
+                <div class="list-group-item">
+                    @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectId)
+                    @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectItemId)
+                    @Html.DisplayFor(model => Model.ProjectItemStatuses[i].ProjectItem.ProjectItemName)
+                    @Html.DisplayFor(model => Model.ProjectItemStatuses[i].IsComplete)
+                </div>
+            }
+
+        }
+        else
+        {
+           <br/><br/>
+            <a asp-action="Create" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId">Assign Project Milestones</a> 
+
+
+}
+
+
+    </div>
+    <div class="col-md-6">
+        <h6>PROJECT DETAILS</h6>
+        <table>
+            <tr class="red" style="background-color: red; width: 100px; ">
+                @{ int counter = 0;
+                    foreach (var item in Model.ProjectItemStatuses)
+                    {
+                        if (item.IsComplete)
+                        {
+                            counter++;
+                        }
+
+                    }
+                  //  var complete = (counter / Model.ProjectItemStatuses.Count() * 100) + "px";
+                   // <td class="green" style="background-color:green; width: @complete"></td>
+                }
+            </tr>
+
+        </table>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.ProjectName)</strong></label>
+            @Html.DisplayFor(model => model.Project.ProjectName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.ProjectDescription)</strong></label>
+            @Html.DisplayFor(model => model.Project.ProjectDescription)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.MunicipalRefNo)</strong></label>
+            @Html.DisplayFor(model => model.Project.MunicipalRefNo)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.DateofSubmission)</strong></label>
+            @Html.DisplayFor(model => model.Project.DateofSubmission)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.MunicipalAssessmentOfficer)</strong></label>
+            @Html.DisplayFor(model => model.Project.MunicipalAssessmentOfficer)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.AssessmentOfficerContactNo)</strong></label>
+            @Html.DisplayFor(model => model.Project.AssessmentOfficerContactNo)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.AssessmentOfficerEmail)</strong></label>
+            @Html.DisplayFor(model => model.Project.AssessmentOfficerEmail)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.DateCreated)</strong></label>
+            @Html.DisplayFor(model => model.Project.DateCreated)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.DateModified)</strong></label>
+            @Html.DisplayFor(model => model.Project.DateModified)
+        </div>
+        <br />
+        <h6>PROPERTY DETAILS</h6>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyName)</strong></label>
+            @Html.DisplayFor(model => model.Project.PropertyName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertySGNo)</strong></label>
+            @Html.DisplayFor(model => model.Project.PropertySGNo)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyERF_LotNo)</strong></label>
+            @Html.DisplayFor(model => model.Project.PropertyERF_LotNo)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyAddress)</strong></label>
+            @Html.DisplayFor(model => model.Project.PropertyAddress)
+        </div>
+        <br/>
+        <h6>CLIENT DETAILS</h6>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyOwnerFirstName)</strong></label>
+            @Html.DisplayFor(model => model.Project.PropertyOwnerFirstName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyOwnerLastName)</strong></label>
+            @Html.DisplayFor(model => model.Project.PropertyOwnerLastName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyOwnerEmail)</strong></label>
+            @Html.DisplayFor(model => model.Project.PropertyOwnerEmail)
+        </div>
+
+        @* <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyOwnerContactNo)</strong></label>
+            @Html.DisplayFor(model => model.Project.PropertyOwnerContactNo)
+        </div>*@
+        <br />
+        <h6>DRAUGHTSMAN DETAILS</h6>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.DraughtsmanFirstName)</strong></label>
+            @Html.DisplayFor(model => model.Project.DraughtsmanFirstName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.DraughtsmanLastName)</strong></label>
+            @Html.DisplayFor(model => model.Project.DraughtsmanLastName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.DraughtsmanContactNo)</strong></label>
+            @Html.DisplayFor(model => model.Project.DraughtsmanContactNo)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Project.DraughtsmanEmail)</strong></label>
+            @Html.DisplayFor(model => model.Project.DraughtsmanEmail)
+        </div>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-6">
+        
+    </div>
+    <div class="col-md-6">
+        
+    
+    </div>
+</div>
+
+@{
+
+}

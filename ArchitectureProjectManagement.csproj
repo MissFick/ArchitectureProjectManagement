@@ -1,0 +1,119 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>ArchitectureProjectManagement-352A1D3C-FCBE-48CF-9804-FC9860D521E6</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;0436</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;0436</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'ArchitectureProjectManagement - Production' ">
+    <StartAction>Project</StartAction>
+    <ExternalConsole>true</ExternalConsole>
+    <EnvironmentVariables>
+      <Variable name="ASPNETCORE_ENVIRONMENT" value="Production" />
+    </EnvironmentVariables>
+    <ApplicationURL>https://localhost:44362;http://localhost:14799</ApplicationURL>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'ArchitectureProjectManagement - Development' ">
+    <StartAction>Project</StartAction>
+    <ExternalConsole>true</ExternalConsole>
+    <ApplicationURL>https://localhost:44362;http://localhost:14799</ApplicationURL>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="**/*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="wwwroot\**\*;navigation.xml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+
+    <Content Remove="appsettings.Development.json" CopyToPublishDirectory="Never" />
+    <Content Include="appsettings.Development.json" CopyToPublishDirectory="Never" />
+    
+    <Content Include="sitefiles\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="SharedThemes\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
+
+    <Content Remove="Views\Draughtsman\Create.cshtml" />
+    <Content Remove="Views\Draughtsman\Delete.cshtml" />
+    <Content Remove="Views\Draughtsman\Details.cshtml" />
+    <Content Remove="Views\Draughtsman\Edit.cshtml" />
+    <Content Remove="Views\Draughtsman\Index.cshtml" />
+    <Content Remove="Views\Property\AddProperty.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup Label="Package References">
+
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
+
+    <PackageReference Include="cloudscribe.Core.Web" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap4" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.Web.StaticFiles" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="4.0.*" />
+    
+
+    <PackageReference Include="cloudscribe.Logging.Web" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="4.0.*" />
+
+    <PackageReference Include="cloudscribe.Core.IdentityServerIntegration" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.IdentityServerIntegration.CompiledViews.Bootstrap4" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MySql" Version="4.0.*" />
+
+    <PackageReference Include="cloudscribe.SimpleContactForm.CoreIntegration" Version="4.0.*" />
+
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.UserProperties.Kvp" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.UserProperties" Version="4.0.*" />
+
+    <PackageReference Include="cloudscribe.Web.Localization" Version="3.0.*" />
+    
+
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap4" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.CoreIntegration" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MySql" Version="3.0.*" />
+
+
+
+
+
+
+
+    
+    
+    <PackageReference Include="cloudscribe.Messaging.Email" Version="2.0.1" />
+  </ItemGroup>
+
+  
+
+  <ItemGroup>
+    <Compile Remove="Repository\ClientRepository.cs" />
+    <Compile Remove="Repository\DraughtsmanRepository.cs" />
+    <Compile Remove="Repository\ApplicationUserRepository.cs" />
+    <Compile Remove="Data\ApplicationUser.cs" />
+    <Compile Remove="Data\Client.cs" />
+    <Compile Remove="Data\Draughtsman.cs" />
+    <Compile Remove="Data\Customer.cs" />
+    <Compile Remove="Controllers\ClientController.cs" />
+    <Compile Remove="Controllers\ApplicationUserController.cs" />
+    <Compile Remove="Controllers\DraughtsmanController.cs" />
+    <Compile Remove="Contracts\IApplicationUserRepository.cs" />
+    <Compile Remove="Contracts\IDraughtsmanRepository.cs" />
+    <Compile Remove="Contracts\IClientRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sitefiles\s1\themes\custom1\wwwroot\Templates\" />
+    <Folder Include="sitefiles\s1\themes\custom1\wwwroot\Templates\EmailTemplates\" />
+    <Folder Include="wwwroot\Templates\" />
+    <Folder Include="wwwroot\Templates\EmailTemplates\" />
+  </ItemGroup>
+</Project>

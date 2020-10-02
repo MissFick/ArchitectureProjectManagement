@@ -1,0 +1,45 @@
+﻿@model ArchitectureProjectManagement.Models.PropertyOwnerPropertyViewModel
+
+@{
+    ViewData["Title"] = "ClientProperty";
+}
+<h2>Client Properties</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().PropertyName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().PropertyERF_LotNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().PropertyAddress)
+                </th>
+            </tr>
+            </thead>
+        <tbody>
+            @foreach (var property in Model.Properties)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => property.PropertyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => property.PropertyERF_LotNo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => property.PropertyAddress)
+                    </td>
+                    <td>
+                        <!--<a asp-page="/Edit" class="btn-btn-warning" asp-route-id="@property.PropertyId">Edit</a> |-->
+                        <a asp-action="Details" asp-controller="Property" class="btn-btn-info" asp-route-id="@property.PropertyId">Details</a> |
+
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+                @{
+                }

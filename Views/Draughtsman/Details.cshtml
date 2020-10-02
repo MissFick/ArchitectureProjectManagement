@@ -1,0 +1,59 @@
+﻿@model ArchitectureProjectManagement.Models.DraughtsmanViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1> Companies</h1>
+<p>
+    <a asp-action="Create" class="" btn-btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Create New</a>
+</p>
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h4>CLIENT DETAILS</h4>
+<br />
+<div>
+    @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+    @Html.DisplayFor(model => model.ApplicationUser.FirstName)
+</div>
+<div>
+    @Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+    @Html.DisplayFor(model => model.ApplicationUser.LastName)
+</div>
+<div>
+    @Html.DisplayNameFor(model => model.ApplicationUser.Address)
+    @Html.DisplayFor(model => model.ApplicationUser.Address)
+</div>
+<div>
+    @Html.DisplayNameFor(model => model.ApplicationUser.IdentityUser.PhoneNumber)
+    @Html.DisplayFor(model => model.ApplicationUser.IdentityUser.PhoneNumber)
+</div>
+<div>
+    @Html.DisplayNameFor(model => model.ApplicationUser.IdentityUser.Email)
+    @Html.DisplayFor(model => model.ApplicationUser.IdentityUser.Email)
+</div>
+<div>
+    @Html.DisplayNameFor(model => model.Company.CompanyName)
+    @Html.DisplayFor(model => model.Company.CompanyName)
+</div>
+<div>
+    @Html.DisplayNameFor(model => model.Company.CompanyContactNo)
+    @Html.DisplayFor(model => model.Company.CompanyContactNo)
+</div>
+<div>
+    @{
+        var base64 = Convert.ToBase64String(Model.Company.CompanyLogo);
+        var logo = String.Format("data:image/jpg;base64,{0}", base64);
+    }
+    <img src="@logo" />
+    @Html.DisplayNameFor(model => model.Company.CompanyLogo)
+    @Html.DisplayFor(model => model.Company.CompanyLogo)
+</div>
+@Html.HiddenFor(model => model.DraughtsmanId)
+<a asp-action="DraughtsmanProjects" asp-controller="Project" class="btn-btn-warning" asp-route-id="model.DraughtsmanId">View Projects</a> |
+
+@section Scripts{
+
+}

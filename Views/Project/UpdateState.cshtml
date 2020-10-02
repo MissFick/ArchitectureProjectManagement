@@ -1,0 +1,23 @@
+﻿@model ArchitectureProjectManagement.Models.ProjectStatusItemViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@Html.HiddenFor(model => model.ProjectId)
+<a asp-action="Edit" asp-controller="ProjectStatus" class="btn btn-warning" asp-route-id="@Model.ProjectId">Update Project Milestones</a> |
+<a asp-action="Index" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId"> Details</a> |
+
+
+<div class="form-group">
+    @for (var i = 0; i < Model.ProjectItemStatuses.Count(); i++)
+    {
+        <div class="list-group-item">
+            @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectId)
+            @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectItemId)
+            @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectItem.ProjectItemName)
+            @Html.DisplayFor(model => Model.ProjectItemStatuses[i].ProjectItem.ProjectItemName)
+            @Html.CheckBoxFor(model => Model.ProjectItemStatuses[i].IsComplete)
+        </div>
+    }
+</div>

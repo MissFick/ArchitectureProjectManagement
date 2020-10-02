@@ -1,0 +1,70 @@
+﻿@model ArchitectureProjectManagement.Models.PropertyDetailsViewModel;
+
+@{
+    ViewData["Title"] = "PropertyDetails";
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+
+
+        @Html.HiddenFor(model => model.PropertyOwnerId)
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.PropertyName)</strong></label>
+            @Html.DisplayFor(model => model.PropertyName)
+        </div>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.PropertyERF_LotNo)</strong></label>
+            @Html.DisplayFor(model => model.PropertyERF_LotNo)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.PropertyAddress)</strong></label>
+            @Html.DisplayFor(model => model.PropertyAddress)
+        </div>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.PropertySGNo)</strong></label>
+            @Html.DisplayFor(model => model.PropertySGNo)
+        </div>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.IsComplex)</strong></label>
+            @Html.DisplayFor(model => model.IsComplex)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.IsEstate)</strong></label>
+            @Html.DisplayFor(model => model.IsEstate)
+        </div>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Complex_Estate_No)</strong></label>
+            @Html.DisplayFor(model => model.Complex_Estate_No)
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.PropertyOwnerFirstName)</strong></label>
+            @Html.DisplayFor(model => model.PropertyOwnerFirstName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.PropertyOwnerLastName)</strong></label>
+            @Html.DisplayFor(model => model.PropertyOwnerLastName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.PropertyOwnerEmailAddress)</strong></label>
+            @Html.DisplayFor(model => model.PropertyOwnerEmailAddress)
+        </div>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.PropertyOwnerContactNo)</strong></label>
+            @Html.DisplayFor(model => model.PropertyOwnerContactNo)
+        </div>
+
+
+        @*<a asp-action="ClientProperty" asp-controller="Property" class="btn-btn-warning" asp-route-id="@Model.PropertyOwnerId">View Properties </a> |*@
+    </div>
+</div>
+

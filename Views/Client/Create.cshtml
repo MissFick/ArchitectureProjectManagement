@@ -1,0 +1,79 @@
+﻿@model ArchitectureProjectManagement.Models.CreateClientViewModel
+@using System.IO;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post" enctype="multipart/form-data" asp-controller="Client">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ApplicationUser.IdentityUser.UserName" class="control-label"></label>
+                <input asp-for="ApplicationUser.IdentityUser.UserName" class="form-control" />
+                <span asp-validation-for="ApplicationUser.IdentityUser.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="ConfirmPassword" class="control-label"></label>
+            <input asp-for="ConfirmPassword" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="ApplicationUser.FirstName" class="control-label"></label>
+                <input asp-for="ApplicationUser.FirstName" class="form-control" />
+                <span asp-validation-for="ApplicationUser.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUser.LastName" class="control-label"></label>
+                <input asp-for="ApplicationUser.LastName" class="form-control" />
+                <span asp-validation-for="ApplicationUser.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUser.Address" class="control-label"></label>
+                <input asp-for="ApplicationUser.Address" class="form-control" />
+                <span asp-validation-for="ApplicationUser.Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Company.CompanyName" class="control-label"></label>
+                <input asp-for="Company.CompanyName" class="form-control" />
+                <span asp-validation-for="Company.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company.CompanyContactNo" class="control-label"></label>
+                <input asp-for="Company.CompanyContactNo" class="form-control" />
+                <span asp-validation-for="Company.CompanyContactNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company.CompanyEmail" class="control-label"></label>
+                <input asp-for="Company.CompanyEmail" class="form-control" />
+                <span asp-validation-for="Company.CompanyEmail" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                        <label asp-for="Company.CompanyLogo" class="control-label"></label>
+                        <input asp-for="Company.CompanyLogo" type="file" name="CompanyLogo" class="form-control" />
+                      <input type="submit" value="Upload" />x
+                @{ using (var memoryStream = new StreamReader(Company.CompanyLogo))
+                    {
+                        await Model.Company.CompanyLogo.I(memoryStream);
+                        Model.Company.CompanyLogo = memoryStream.ToArray();
+                    }
+
+                    <span asp-validation-for="Company.CompanyLogo" class="text-danger"></span>
+        </div>}*@
+            <div class="form-group">
+                <input type="submit" value="Create New Client" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>

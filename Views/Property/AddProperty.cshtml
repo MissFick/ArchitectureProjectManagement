@@ -1,0 +1,96 @@
+﻿@model ArchitectureProjectManagement.Models.PropertyViewModel
+
+@{
+    ViewData["Title"] = "AddProperty";
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.ClientId)
+            <div class="form-group">
+                <label asp-for="PropertyName" class="control-label"></label>
+                <input asp-for="PropertyName" class="form-control" />
+                <span asp-validation-for="PropertyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyERF_LotNo" class="control-label"></label>
+                <input asp-for="PropertyERF_LotNo" class="form-control" />
+                <span asp-validation-for="PropertyERF_LotNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyAddress" class="control-label"></label>
+                <input asp-for="PropertyAddress" class="form-control" />
+                <span asp-validation-for="PropertyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertySGNo" class="control-label"></label>
+                <input asp-for="PropertySGNo" class="form-control" />
+                <span asp-validation-for="PropertySGNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsComplex" class="control-label"></label>
+                <input asp-for="IsComplex" class="form-control" />
+                <span asp-validation-for="IsComplex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsEstate" class="control-label"></label>
+                <input asp-for="IsEstate" class="form-control" />
+                <span asp-validation-for="IsEstate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Complex_Estate_No" class="control-label"></label>
+                <input asp-for="Complex_Estate_No" class="form-control" />
+                <span asp-validation-for="Complex_Estate_No" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+
+        <h4>CLIENT DETAILS</h4>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Client.ApplicationUser.FirstName)</strong></label>
+            @Html.DisplayFor(model => model.Client.ApplicationUser.FirstName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Client.ApplicationUser.LastName)</strong></label>
+            @Html.DisplayFor(model => model.Client.ApplicationUser.LastName)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Client.ApplicationUser.IdentityUser.Email)</strong></label>
+            @Html.DisplayFor(model => model.Client.ApplicationUser.IdentityUser.Email)
+        </div>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Client.ApplicationUser.IdentityUser.PhoneNumber)</strong></label>
+            @Html.DisplayFor(model => model.Client.ApplicationUser.IdentityUser.PhoneNumber)
+        </div>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Client.Company.CompanyName)</strong></label>
+            @Html.DisplayFor(model => model.Client.Company.CompanyName)
+        </div>
+
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Client.Company.CompanyLogo)</strong></label>
+            @Html.DisplayFor(model => model.Client.Company.CompanyLogo)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Client.Company.CompanyContactNo)</strong></label>
+            @Html.DisplayFor(model => model.Client.Company.CompanyContactNo)
+        </div>
+        <div>
+            <label><strong>@Html.DisplayNameFor(model => model.Client.Company.CompanyEmail)</strong></label>
+            @Html.DisplayFor(model => model.Client.Company.CompanyEmail)
+        </div>
+        <a asp-action="ClientProperty" asp-controller="Property" class="btn-btn-warning" asp-route-id="@Model.ClientId">View Properties </a> |
+    </div>
+</div>
+

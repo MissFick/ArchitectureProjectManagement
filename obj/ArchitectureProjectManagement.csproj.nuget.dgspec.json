@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/Nadia/Projects/ArchitectureProjectManagement/ArchitectureProjectManagement.csproj": {}
+  },
+  "projects": {
+    "/Users/Nadia/Projects/ArchitectureProjectManagement/ArchitectureProjectManagement.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/Nadia/Projects/ArchitectureProjectManagement/ArchitectureProjectManagement.csproj",
+        "projectName": "ArchitectureProjectManagement",
+        "projectPath": "/Users/Nadia/Projects/ArchitectureProjectManagement/ArchitectureProjectManagement.csproj",
+        "packagesPath": "/Users/Nadia/.nuget/packages/",
+        "outputPath": "/Users/Nadia/Projects/ArchitectureProjectManagement/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/Nadia/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "cloudscribe.Core.CompiledViews.Bootstrap4": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Core.IdentityServer.EFCore.MySql": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Core.IdentityServerIntegration": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Core.Storage.EFCore.MySql": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Core.Web": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.DynamicPolicy.CoreIntegration": {
+              "target": "Package",
+              "version": "[3.0.*, )"
+            },
+            "cloudscribe.DynamicPolicy.Storage.EFCore.MySql": {
+              "target": "Package",
+              "version": "[3.0.*, )"
+            },
+            "cloudscribe.DynamicPolicy.Web.Mvc": {
+              "target": "Package",
+              "version": "[3.0.*, )"
+            },
+            "cloudscribe.DynamicPolicy.Web.Views.Bootstrap4": {
+              "target": "Package",
+              "version": "[3.0.*, )"
+            },
+            "cloudscribe.IdentityServerIntegration.CompiledViews.Bootstrap4": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Kvp.Storage.EFCore.MySql": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Logging.EFCore.MySql": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Logging.Web": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Messaging.Email": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
+            "cloudscribe.SimpleContactForm.CoreIntegration": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.UserProperties": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.UserProperties.Kvp": {
+              "target": "Package",
+              "version": "[4.0.*, )"
+            },
+            "cloudscribe.Web.Localization": {
+              "target": "Package",
+              "version": "[3.0.*, )"
+            },
+            "cloudscribe.Web.StaticFiles": {
+              "target": "Package",
+              "version": "[3.0.*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

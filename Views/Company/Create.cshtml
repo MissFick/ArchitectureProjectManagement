@@ -1,0 +1,34 @@
+﻿@model ArchitectureProjectManagement.Models.CompanyViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyEmail" class="control-label"></label>
+                <input asp-for="CompanyEmail" class="form-control" />
+                <span asp-validation-for="CompanyEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyContactNo" class="control-label"></label>
+                <input asp-for="CompanyContactNo" class="form-control" />
+                <span asp-validation-for="CompanyContactNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" /> <a class="btn btn-outline-secondary btn-block" asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>

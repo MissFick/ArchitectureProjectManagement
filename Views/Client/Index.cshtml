@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ArchitectureProjectManagement.Models.ClientViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1> Clients</h1>
+<p>
+    <a asp-action="Create"` class="" btn-btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.IdentityUser.Email)
+            </th>          
+            <th>
+                @Html.DisplayNameFor(model => model.Company.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.CompanyContactNo)
+            </th>
+            
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.IdentityUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyContactNo)
+            </td>
+            
+            <td>
+                @*<a asp-page="/Edit" class="btn-btn-warning" asp-route-id="@item.ClientId">Edit</a> |*@
+                <a asp-action="Details" asp-controller="Client" class="btn-btn-info" asp-route-id="@item.ClientId">Details</a> |
+                <a asp-action="AddProperty" asp-controller="Property" class="btn-btn-warning" asp-route-id="@item.ClientId">Add Property</a> |
+                @*<a asp-page="/Delete" class="btn-btn-danger" asp-route-id="@item.ClientId">Delete</a>*@
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+
+}
