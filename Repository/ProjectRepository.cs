@@ -59,7 +59,7 @@ namespace ArchitectureProjectManagement.Repository
 
         public async Task<ICollection<Project>> FindAllByPropertyOwnerProjects(string propOwner) {
             var projects = await _dbContext.tb_Project
-                .Where(n => n.PropertyOwnerId == propOwner && n.ProjectStateId == 2)
+                .Where(n => n.PropertyOwnerId == propOwner) //&& n.ProjectStateId == 2)
                 .Include(n => n.Property)
                 .ToListAsync();
             return projects;
@@ -74,7 +74,25 @@ namespace ArchitectureProjectManagement.Repository
             return projects;
         }
 
-        public async  Task<ICollection<Project>> GetAllArchivedProjects()
+        public async Task<ICollection<Project>> GetAllArchivedProjects()
+        {
+            var projects = await _dbContext.tb_Project
+                .Where(n => n.ProjectStateId == 6)
+                .Include(n => n.Property)
+                .ToListAsync();
+            return projects;
+        }
+
+        public async Task<ICollection<Project>> GetAllDormantProjects()
+        {
+            var projects = await _dbContext.tb_Project
+                .Where(n => n.ProjectStateId == 3)
+                .Include(n => n.Property)
+                .ToListAsync();
+            return projects;
+        }
+
+        public async Task<ICollection<Project>> GetAllConcludedProjects()
         {
             var projects = await _dbContext.tb_Project
                 .Where(n => n.ProjectStateId == 5)
@@ -83,17 +101,25 @@ namespace ArchitectureProjectManagement.Repository
             return projects;
         }
 
-      /*  public async Task<ICollection<Project>> FindAllByClientDetails(int clientId)
+        public async Task<ICollection<Project>> GetAllLostProjects()
         {
             var projects = await _dbContext.tb_Project
-                .Include(n => n.Draughtsman)
+                .Where(n => n.ProjectStateId == 4)
                 .Include(n => n.Property)
-                .Include(n => n.Property.Client)
-                .Include(n => n.Property.Client.Company)
-                .Where(n => n.Property.ClientId == clientId)
                 .ToListAsync();
             return projects;
-        }*/
+        }
+        /*  public async Task<ICollection<Project>> FindAllByClientDetails(int clientId)
+          {
+              var projects = await _dbContext.tb_Project
+                  .Include(n => n.Draughtsman)
+                  .Include(n => n.Property)
+                  .Include(n => n.Property.Client)
+                  .Include(n => n.Property.Client.Company)
+                  .Where(n => n.Property.ClientId == clientId)
+                  .ToListAsync();
+              return projects;
+          }*/
 
         public async Task<ICollection<Project>> GetAll()
         {

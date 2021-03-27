@@ -15,5 +15,11 @@ namespace ArchitectureProjectManagement.Contracts
 
         public Task<ICollection<Project>> GetAllArchivedProjects();
 
+        public Task<ICollection<Project>> GetAllDormantProjects();
+
+        public Task<ICollection<Project>> GetAllConcludedProjects();
+
+        public Task<ICollection<Project>> GetAllLostProjects();
+
     }
 }

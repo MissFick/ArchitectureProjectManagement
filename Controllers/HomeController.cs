@@ -15,11 +15,20 @@ namespace ArchitectureProjectManagement.Controllers
 
         public IActionResult Index()
         {
-            /*if (User.IsInRole("Property Owner"))
-            {
-                
+            /*if (User.IsInRole("Draughtsman") || User.IsInRole("Administrators") || User.IsInRole("Property Owner"){
+                var userId = User.Identity.IsAuthenticated
+                return RedirectToAction("Index", "Project", new { userId });
             }*/
-            return View();
+                /*var userId = User.G
+                try{
+               return RedirectToAction("Index", "Project", new { userId });
+               }
+                */
+                /*if (User.IsInRole("Property Owner"))
+                {
+
+                }*/
+                return View();
         }
 
         public IActionResult About()

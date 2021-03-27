@@ -93,6 +93,8 @@ namespace ArchitectureProjectManagement
             services.Configure<Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions>(options =>
             {
                 options.Cookie.IsEssential = true;
+                options.Cookie.SameSite = SameSiteMode.None;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
             });
 
             //*** Important ***
@@ -119,6 +121,7 @@ namespace ArchitectureProjectManagement
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IPropertyRepository, PropertyRepository>();
             services.AddScoped<IAppUserRoleRepository, AppUserRoleRepository>();
+            services.AddScoped<IAppRoleRepository, AppRoleRepository>();
             
             var mappingConfig = new MapperConfiguration(mc =>
             {

@@ -55,6 +55,7 @@ namespace ArchitectureProjectManagement.Controllers
             var propertyOwner = await _siteUserManager.FindByIdAsync(project.PropertyOwnerId.ToString());
             var draughtsman = await _siteUserManager.FindByIdAsync(project.DraughtsmanId.ToString());
             //string siteid = "1732d901-82c3-4c48-9e02-3049c8ea2738";
+            var siteId = User.GetUserSiteIdAsGuid();
             ProjectDetailsViewModel projectDetails = new ProjectDetailsViewModel
             {
                 ProjectId = project.ProjectId,
@@ -197,6 +198,7 @@ namespace ArchitectureProjectManagement.Controllers
             var propertyOwner = await _siteUserManager.FindByIdAsync(project.PropertyOwnerId.ToString());
             var draughtsman = await _siteUserManager.FindByIdAsync(project.DraughtsmanId.ToString());
             //string siteid = "1732d901-82c3-4c48-9e02-3049c8ea2738";
+            var siteId = User.GetUserSiteIdAsGuid();
             ProjectDetailsViewModel projectDetails = new ProjectDetailsViewModel
             {
                 ProjectId = project.ProjectId,
@@ -227,9 +229,9 @@ namespace ArchitectureProjectManagement.Controllers
                 PropertyOwnerEmail = propertyOwner.Email,
                 // PropertyOwnerContactNo = propertyOwner.PhoneNumber,
 
-                DraughtsmanFirstName = draughtsman.FirstName,
+               /* DraughtsmanFirstName = draughtsman.FirstName,
                 DraughtsmanLastName = draughtsman.LastName,
-                DraughtsmanEmail = draughtsman.Email,
+                DraughtsmanEmail = draughtsman.Email,*/
                 // DraughtsmanContactNo = draughtsman.PhoneNumber,
 
             };
@@ -311,7 +313,9 @@ namespace ArchitectureProjectManagement.Controllers
             }
         }
 
-       /* private void emailClient(string logo, int clientId)
+
+
+        /* private void emailClient(string logo, int clientId)
         {
             string htmlEmail;
             string textEmail;

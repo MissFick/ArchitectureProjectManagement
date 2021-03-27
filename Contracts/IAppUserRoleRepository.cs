@@ -11,9 +11,8 @@ namespace ArchitectureProjectManagement.Contracts
 
         public Task<List<AppUserRole>> GetAllByRole(Guid roleId);
             
-        public Task<List<AppUserRole>> GetAllDraughtsman();
+        public Task<List<AppUserRole>> GetAllDraughtsman(Guid draughtsmanRoleId);
 
-        public Task<List<AppUserRole>> GetAllPropertyOwners();
-
+        public Task<List<AppUserRole>> GetAllPropertyOwners(Guid propertyOwnerRoleId);
     }
 }

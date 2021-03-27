@@ -36,8 +36,31 @@
         {
             <tr>
                 <td>
-                    <a asp-action="UpdateState" asp-controller="Project" class="btn btn-info" asp-route-id="@item.ProjectId">Update</a>
-                    
+                    @{ string projectCurrentStateName = null;
+                        switch (item.ProjectStateId)
+                        {
+                            case 1:
+                                projectCurrentStateName = "New";
+                                break;
+                            case 2:
+                                projectCurrentStateName = "Active";
+                                break;
+                            case 3:
+                                projectCurrentStateName = "Dormant";
+                                break;
+                            case 4:
+                                projectCurrentStateName = "Lost";
+                                break;
+                            case 5:
+                                projectCurrentStateName = "Concluded";
+                                break;
+                            case 6:
+                                projectCurrentStateName = "Archived";
+                                break;
+                        }
+                    }
+                    <a asp-action="ProjectStateUpdate" asp-controller="Project" class="btn btn-info" asp-route-id="@item.ProjectId">@projectCurrentStateName</a>
+
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Property.PropertyERF_LotNo)

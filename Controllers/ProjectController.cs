@@ -30,7 +30,8 @@ namespace ArchitectureProjectManagement.Controllers
         private readonly IPropertyRepository _propertyrepo;    
         private readonly IMapper _mapper;
         private readonly SiteUserManager<SiteUser> _siteUserManager;
-        private readonly IAppUserRoleRepository _appRoleRepo;
+        private readonly IAppUserRoleRepository _appUserRoleRepo;
+        private readonly IAppRoleRepository _appRoleRepo;
 
 
 
@@ -41,9 +42,8 @@ namespace ArchitectureProjectManagement.Controllers
             IPropertyRepository propertyrepo,
             SiteUserManager<SiteUser> siteUserManager,
             SiteRoleManager<SiteRole> siteRoleMamager,
-            IAppUserRoleRepository appRoleRepository
-
-
+            IAppUserRoleRepository appUserRoleRepo,
+            IAppRoleRepository appRoleRepo 
            )
         
         {
@@ -54,7 +54,8 @@ namespace ArchitectureProjectManagement.Controllers
             _siteRoleManager = siteRoleMamager;
             _mapper = mapper;
             _siteUserManager = siteUserManager;
-            _appRoleRepo = appRoleRepository;
+            _appUserRoleRepo = appUserRoleRepo;
+            _appRoleRepo = appRoleRepo;
         }
 
         // GET: /<controller>/
@@ -62,7 +63,7 @@ namespace ArchitectureProjectManagement.Controllers
         public async Task<IActionResult> Index()
         {
             ICollection<Project> projects = null;
-           
+
 
             if (User.IsInRole("Draughtsman"))
             {
@@ -73,7 +74,10 @@ namespace ArchitectureProjectManagement.Controllers
                 projects = await _repo.FindAllByPropertyOwnerProjects(User.GetUserId());
 
             }
-            else projects = await _repo.GetAll();
+            else
+            {
+                projects = await _repo.GetAll();
+            }
             /*var projects = await _repo.GetAll();
             var model = _mapper.Map<List<Project>, List<ProjectViewModel>>(projects.ToList());
             */
@@ -82,8 +86,89 @@ namespace ArchitectureProjectManagement.Controllers
             
         }
 
+        [Authorize]
+        public async Task<IActionResult> Archived()
+        {
+            //ICollection<Project> projects = null;
+            try
+            {
+               
+                    var projects = await _repo.GetAllArchivedProjects();
+                    var model = _mapper.Map<List<Project>, List<ProjectViewModel>>(projects.ToList());
+
+                    return View(model);
+                
+            }
+            catch
+            { 
+                return View();
+            }
+            return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Concluded()
+        {
+            //ICollection<Project> projects = null;
+            try
+            {
+
+                var projects = await _repo.GetAllConcludedProjects();
+                var model = _mapper.Map<List<Project>, List<ProjectViewModel>>(projects.ToList());
+
+                return View(model);
+
+            }
+            catch
+            {
+                return View();
+            }
+            return View();
+        }
+
+
+        [Authorize]
+        public async Task<IActionResult> Dormant()
+        {
+            //ICollection<Project> projects = null;
+            try
+            {
+
+                var projects = await _repo.GetAllDormantProjects();
+                var model = _mapper.Map<List<Project>, List<ProjectViewModel>>(projects.ToList());
+
+                return View(model);
+
+            }
+            catch
+            {
+                return View();
+            }
+            return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Lost()
+        {
+            //ICollection<Project> projects = null;
+            try
+            {
+
+                var projects = await _repo.GetAllLostProjects();
+                var model = _mapper.Map<List<Project>, List<ProjectViewModel>>(projects.ToList());
+
+                return View(model);
+
+            }
+            catch
+            {
+                return View();
+            }
+            return View();
+        }
+
         //GET: Project/Details/2
-        [Authorize(Policy = "UserLookupPolicy")]
+        [Authorize]
         public async Task<IActionResult> Details(int id)
         {
 
@@ -146,21 +231,11 @@ namespace ArchitectureProjectManagement.Controllers
         public async Task<ActionResult> Create()
         {
             var userId = User.GetUserIdAsGuid();
-            //NF To DO -- 
-            //Get all Draughtsman -- Get All SiteUsers where role == Draughtsman
-
-            //var draughtsmen = await _userStore.GetUsersInRoleAsync("Draughtsman", cancellationToken);
-            //var draft = _siteRoleManager.GetUsersInRole()
-            //_roleManager.
-            //await _siteUserManager.GetUsersInRoleAsync("Draughtsman");
-            // .GetUsersInRoleAsync("Draughtsman");
-
-            //Polpulate Dropdown with All Draughtsman First Name and Last Name
-
-            //var draughtsmenList = draughtsmen.ToList();
-
-            //var draughtsmen = await _repo.GetAll();
-            var draughtsmen = await _appRoleRepo.GetAllDraughtsman();
+            var siteId = User.GetUserSiteIdAsGuid();
+            var draughtsmanRole = await _appRoleRepo.GetDraughtsmanRoleId(siteId);
+            var draughtsmanRoleId = draughtsmanRole.Id;
+            var draughtsmen = await _appUserRoleRepo.GetAllDraughtsman(draughtsmanRoleId);
+            //var draughtsmen = await _appUserRoleRepo.GetAllDraughtsman(siteId);
 
             List<DraughtsmanDDListViewModel> draftSelect = new List<DraughtsmanDDListViewModel> { };
             foreach (var draughtsman in draughtsmen)
@@ -182,7 +257,7 @@ namespace ArchitectureProjectManagement.Controllers
                 {
                     var userEmail = User.GetEmail();
                     var userDisplayName = User.GetEmail();
-                    var siteId = User.GetUserSiteIdAsGuid();
+                   // var siteId = User.GetUserSiteIdAsGuid();
 
                     var draughtsmanSelect = draftSelect.Select(n => new SelectListItem
                     {
@@ -226,7 +301,8 @@ namespace ArchitectureProjectManagement.Controllers
                 {
                     return View(entity);
                 }
-                string siteid = "1732d901-82c3-4c48-9e02-3049c8ea2738";
+                //string siteid = "1732d901-82c3-4c48-9e02-3049c8ea2738";
+                var siteId = User.GetUserSiteIdAsGuid().ToString();
                 var property = await _propertyrepo.Get(int.Parse(entity.PropertyId.ToString()));
                 var propertyOwnerId = property.PropertyOwnerId;
                 
@@ -245,7 +321,7 @@ namespace ArchitectureProjectManagement.Controllers
                     DraughtsmanId = entity.DraughtsmanId,
                     PropertyOwnerId = propertyOwnerId,
                     ProjectStateId = 1,
-                    SiteId = siteid,
+                    SiteId = siteId,
                 };
                 
                 var project = _mapper.Map<Project>(project1);
@@ -313,17 +389,243 @@ namespace ArchitectureProjectManagement.Controllers
         }
 
 
-        //GET: Draughtsman/Edit
-        public ActionResult Edit(int id, IFormCollection collection)
+        //Update Project State
+
+        public async Task<ActionResult> ProjectStateUpdate(int id)
         {
+            var userId = User.GetUserIdAsGuid();
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (User.IsInRole("Draughtsman") || User.IsInRole("Administrators"))
+                {
+                    var project = await _repo.Get(id);
+                    var mappedProject = _mapper.Map<Project, ProjectViewModel>(project);
+
+                    string projectCurrentStateName = null;
+                    switch (mappedProject.ProjectStateId)
+                    {
+                        case 1:
+                            projectCurrentStateName = "New";
+                            break;
+                        case 2:
+                            projectCurrentStateName = "Active";
+                            break;
+                        case 3:
+                            projectCurrentStateName = "Dormant";
+                            break;
+                        case 4:
+                            projectCurrentStateName = "Lost";
+                            break;
+                        case 5:
+                            projectCurrentStateName = "Concluded";
+                            break;
+                        case 6:
+                            projectCurrentStateName = "Archived";
+                            break;
+
+                    }
+
+                    List<ProjectStateViewModel> StateList = new List<ProjectStateViewModel>();
+                    StateList.Add(new ProjectStateViewModel { ProjectStateId = 1, ProjectStateName = "New" });
+                    StateList.Add(new ProjectStateViewModel { ProjectStateId = 2, ProjectStateName = "Active" });
+                    StateList.Add(new ProjectStateViewModel { ProjectStateId = 3, ProjectStateName = "Dormant" });
+                    StateList.Add(new ProjectStateViewModel { ProjectStateId = 4, ProjectStateName = "Lost" });
+                    StateList.Add(new ProjectStateViewModel { ProjectStateId = 5, ProjectStateName = "Concluded" });
+                    StateList.Add(new ProjectStateViewModel { ProjectStateId = 6, ProjectStateName = "Archived" });
+
+                    var projectStateSelect = StateList.Select(n => new SelectListItem
+                    {
+                        Text = n.ProjectStateName,
+                        Value = n.ProjectStateId.ToString()
+                    });
+
+                    var projectstate = new ProjectStateProjectVM
+                    {
+                        ProjectId = id,
+                        Project = mappedProject,
+                        ProjectStateName = projectCurrentStateName,
+                        StateSelectList = projectStateSelect,
+                    };
+
+                    //return RedirectToAction(nameof(Index));
+                    //return RedirectToAction("Details", "Property", new { id = entity.PropertyId });
+                    return View(projectstate);
+                }
+            }
+            catch
+            {
+                throw new AccessViolationException("User not a Authorized");
+            }
+            return RedirectToAction("Index", "Project", new { userId });
+        }
+    
+        
+         //Check how you're going to work this one.
+         //It's for Transfer Project.
+         [HttpPost]
+         [ValidateAntiForgeryToken]
+         public async Task<ActionResult> ProjectStateUpdate(ProjectStateProjectVM projectStateVM)
+          {
+             try
+             {
+             var siteId = User.GetUserSiteIdAsGuid();
+                ProjectViewModel updatedProject = new ProjectViewModel
+                {
+                    ProjectId = projectStateVM.ProjectId,
+                    ProjectName = projectStateVM.Project.ProjectName,
+                    ProjectDescription = projectStateVM.Project.ProjectDescription,
+                    MunicipalRefNo = projectStateVM.Project.MunicipalRefNo,
+                    MunicipalAssessmentOfficer = projectStateVM.Project.MunicipalAssessmentOfficer,
+                    AssessmentOfficerContactNo = projectStateVM.Project.AssessmentOfficerContactNo,
+                    AssessmentOfficerEmail = projectStateVM.Project.AssessmentOfficerEmail,
+                    DateCreated = projectStateVM.Project.DateCreated,
+                    DateofSubmission = projectStateVM.Project.DateofSubmission,
+                    DraughtsmanId = projectStateVM.Project.DraughtsmanId,
+                    PropertyId = projectStateVM.Project.PropertyId,
+                    PropertyOwnerId = projectStateVM.Project.PropertyOwnerId,
+                    ProjectStateId = projectStateVM.Project.ProjectStateId,
+                    DateModified = DateTime.Now,
+                    SiteId = projectStateVM.Project.SiteId
+                };
+             var mappedProject = _mapper.Map<ProjectViewModel, Project>(updatedProject);
+             var isSuccess = await _repo.Update(mappedProject);
+             if (!isSuccess)
+             {
+                 ModelState.AddModelError("", "Something went wrong...");
+                 return View(projectStateVM.ProjectId);
+             }
+            
+                 return RedirectToAction(nameof(Index));
+             }
+             catch
+             {
+                 return View();
+             }
+         }
+        
+
+        //Edit Project
+        public async Task<ActionResult> Edit(int id)
+        {
+            var userId = User.GetUserIdAsGuid();
+            var siteId = User.GetUserSiteIdAsGuid();
+            var project = await _repo.Get(id);
+
+            var draughtsmen = await _appUserRoleRepo.GetAllDraughtsman(siteId);
+            List<DraughtsmanDDListViewModel> draftSelect = new List<DraughtsmanDDListViewModel> { };
+            foreach (var draughtsman in draughtsmen)
+            {
+                var draftId = draughtsman.UserId;
+                var draftsman = await _siteUserManager.FindByIdAsync(draftId.ToString());
+                var draftListItem = new DraughtsmanDDListViewModel
+                {
+                    DraughtsmanId = draftId.ToString(),
+                    FirstName = draftsman.FirstName,
+                    LastName = draftsman.LastName
+                };
+                draftSelect.Add(draftListItem);
+            }
+            try
+            {
+                if (User.IsInRole("Draughtsman") || User.IsInRole("Administrators"))
+                {
+                    var userEmail = User.GetEmail();
+                    var userDisplayName = User.GetEmail();
+                   // var siteId = User.GetUserSiteIdAsGuid();
+
+                    var draughtsmanSelect = draftSelect.Select(n => new SelectListItem
+                    {
+                        Text = n.FirstName + " " + n.LastName,
+                        Value = n.DraughtsmanId.ToString()
+                    });
+
+                    var allProperties = await _propertyrepo.GetAll();
+                    var properties = allProperties.ToList();
+                    var propertySelect = properties.Select(n => new SelectListItem
+                    {
+                        Text = n.PropertyERF_LotNo + " " + n.PropertyName,
+                        Value = n.PropertyId.ToString()
+                    });
+
+                    CreateProjectViewModel createProjectVM = new CreateProjectViewModel
+                    {
+                        ProjectId = project.ProjectId,
+                        ProjectName = project.ProjectName,
+                        ProjectDescription = project.ProjectDescription,
+                        MunicipalRefNo = project.MunicipalRefNo,
+                        DateofSubmission = project.DateofSubmission,
+                        MunicipalAssessmentOfficer = project.MunicipalAssessmentOfficer,
+                        AssessmentOfficerEmail = project.AssessmentOfficerEmail,
+                        AssessmentOfficerContactNo = project.AssessmentOfficerContactNo,
+                        DateCreated = project.DateCreated,
+                        DateModified = project.DateModified,
+                        PropertyId = project.PropertyId,
+                        DraughtsmanId = project.DraughtsmanId,
+                        ProjectStateId = project.ProjectStateId,
+                        SiteId = project.SiteId,
+
+                     
+                       // Properties = propertySelect,
+                        Draughtsmen = draughtsmanSelect
+                    };
+                    return View(createProjectVM);
+                }
+
+            }
+            catch
+            {
+                throw new AccessViolationException("User not a Authorized");
+            }
+
+            return RedirectToAction("Index", "Home", new { userId });
+          
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(ProjectDetailsViewModel project)
+        {
+            var siteId = User.GetUserSiteIdAsGuid().ToString();
+            if (!ModelState.IsValid)
+            {
+                return View(project);
+            }
+
+            try
+            {
+                Project updatedProject = new Project
+                {
+                    ProjectId = project.ProjectId,
+                    ProjectName = project.ProjectName,
+                    ProjectDescription = project.ProjectDescription,
+                    DateofSubmission = project.DateofSubmission,
+                    DateCreated = project.DateCreated,
+                    DateModified = DateTime.Now,
+                    MunicipalRefNo = project.MunicipalRefNo,
+                    MunicipalAssessmentOfficer = project.MunicipalAssessmentOfficer,
+                    AssessmentOfficerContactNo = project.AssessmentOfficerContactNo,
+                    AssessmentOfficerEmail = project.AssessmentOfficerEmail,
+                    DraughtsmanId = project.DraughtsmanId,
+                    PropertyId = project.PropertyId,
+                    PropertyOwnerId = project.PropertyOwnerId,
+                    ProjectStateId = project.ProjectStateId,
+                    SiteId = project.SiteId
+                };
+                var isSuccess = await _repo.Update(updatedProject);
+                {
+                    if (!isSuccess)
+                        {
+                        ModelState.AddModelError("", "Something went wrong...");
+                        return View(project);
+                    }
+                }
+                return RedirectToAction("Details", "Project", new { id = project.ProjectId });
             }
             catch
             {
                 return View();
             }
+
         }
 
         public ActionResult Delete(int id)

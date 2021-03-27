@@ -11,6 +11,6 @@ namespace ArchitectureProjectManagement.Models
 
         public string ProjectStateName { get; set; }
 
-        public Guid SiteId { get; set; }
+        //public Guid SiteId { get; set; }
     }
 }

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ArchitectureProjectManagement.Models.ProjectViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
+
+@{
+    ViewData["Title"] = "Dormant";
+}
+<h1> </h1>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                Project State
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Property.PropertyERF_LotNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MunicipalRefNo)
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{ string projectCurrentStateName = null;
+                        switch (item.ProjectStateId)
+                        {
+                            case 1:
+                                projectCurrentStateName = "New";
+                                break;
+                            case 2:
+                                projectCurrentStateName = "Active";
+                                break;
+                            case 3:
+                                projectCurrentStateName = "Dormant";
+                                break;
+                            case 4:
+                                projectCurrentStateName = "Lost";
+                                break;
+                            case 5:
+                                projectCurrentStateName = "Concluded";
+                                break;
+                            case 6:
+                                projectCurrentStateName = "Archived";
+                                break;
+                        }
+                    }
+                    <a asp-action="ProjectStateUpdate" asp-controller="Project" class="btn btn-info" asp-route-id="@item.ProjectId">@projectCurrentStateName</a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Property.PropertyERF_LotNo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MunicipalRefNo)
+                </td>
+
+                <td>
+                    @*<a asp-page="/Edit" class="btn-btn-warning" asp-route-id="@item.ProjectId">Edit</a> |
+                        <a asp-action="Details" asp-controller="Project" class="btn-btn-info" asp-route-id="@item.ProjectId">Details</a>
+                        <a asp-page="/Delete" class="btn-btn-danger" asp-route-id="@item.ProjectId">Delete</!--a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+
+}
+

@@ -1,48 +1,36 @@
 ﻿<Properties StartupConfiguration="{10B19CF1-ECDF-4186-A23A-25CD36D788E4}|Default">
   <MonoDevelop.Ide.ItemProperties.ArchitectureProjectManagement PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument=".gitignore">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Controllers/ProjectStatusController.cs" Line="237" Column="1" />
-      <File FileName="Views/ProjectStatus/Index.cshtml" Line="14" Column="52" />
-      <File FileName="Views/ProjectStatus/Edit.cshtml" Line="1" Column="1" />
-      <File FileName="Views/ProjectStatus/Create.cshtml" Line="32" Column="8" />
-      <File FileName="Views/Project/Edit.cshtml" Line="18" Column="74" />
-      <File FileName="wwwroot/Templates/EmailTemplates/UpdateEmail.html" Line="46" Column="59" />
-      <File FileName="Controllers/PropertyController.cs" Line="263" Column="1" />
-      <File FileName="Views/Project/Index.cshtml" Line="39" Column="72" />
-      <File FileName="Controllers/ProjectController.cs" Line="287" Column="67" />
-      <File FileName="Views/Project/UpdateState.cshtml" Line="1" Column="61" />
-      <File FileName="Models/ProjectStatusViewModel.cs" Line="18" Column="1" />
-      <File FileName=".gitignore" Line="1" Column="1" />
+      <File FileName="Controllers/ProjectController.cs" Line="22" Column="39" IsPinned="True" />
+      <File FileName="navigation.xml" />
+      <File FileName="Program.cs" />
+      <File FileName="Startup.cs" Line="130" Column="51" />
+      <File FileName="Views/Home/Index.cshtml" />
+      <File FileName="Views/Account/logoff.cshtml" />
+      <File FileName="appsettings.json" />
+      <File FileName="Models/ProjectViewModel.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ArchitectureProjectManagement" expanded="True">
             <Node name="ArchitectureProjectManagement" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="Contracts" expanded="True" />
-              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
+              <Node name="DataMapping" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Properties" expanded="True" />
               <Node name="Repository" expanded="True" />
-              <Node name="siteuploadfiles" expanded="True">
-                <Node name="s1" expanded="True">
-                  <Node name="wwwroot" expanded="True" />
-                </Node>
-              </Node>
               <Node name="Views" expanded="True">
-                <Node name="Project" expanded="True" />
+                <Node name="Account" expanded="True" />
+                <Node name="Home" expanded="True" />
+                <Node name="ProjectItem" expanded="True" />
                 <Node name="ProjectItemStatus" expanded="True" />
+                <Node name="ProjectState" expanded="True" />
                 <Node name="ProjectStatus" expanded="True" />
+                <Node name="Property" expanded="True" />
               </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="Templates" expanded="True">
-                  <Node name="EmailTemplates" expanded="True" />
-                </Node>
-              </Node>
-              <Node name=".gitignore" selected="True" />
+              <Node name="README.md" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -54,21 +42,34 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint enabled="false" file="/Users/Nadia/Projects/ArchitectureProjectManagement/Data/ProjectState.cs" relfile="Data/ProjectState.cs" line="16" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="326" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="319" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="321" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="264" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="254" column="1" />
-      <Breakpoint enabled="false" file="/Users/Nadia/Projects/ArchitectureProjectManagement/Views/ProjectStatus/Create.cshtml" relfile="Views/ProjectStatus/Create.cshtml" line="18" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="340" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="335" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="277" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="332" column="1" />
       <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Repository/ProjectItemStatusRepository.cs" relfile="Repository/ProjectItemStatusRepository.cs" line="33" column="1" />
       <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Repository/ProjectItemStatusRepository.cs" relfile="Repository/ProjectItemStatusRepository.cs" line="53" column="1" />
       <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Views/ProjectStatus/Create.cshtml" relfile="Views/ProjectStatus/Create.cshtml" line="31" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectStatusController.cs" relfile="Controllers/ProjectStatusController.cs" line="283" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectStatusController.cs" relfile="Controllers/ProjectStatusController.cs" line="278" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectStatusController.cs" relfile="Controllers/ProjectStatusController.cs" line="335" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectStatusController.cs" relfile="Controllers/ProjectStatusController.cs" line="248" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectStatusController.cs" relfile="Controllers/ProjectStatusController.cs" line="252" column="1" />
-      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectStatusController.cs" relfile="Controllers/ProjectStatusController.cs" line="256" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectStatusController.cs" relfile="Controllers/ProjectStatusController.cs" line="337" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="147" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="162" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Views/Property/Create.cshtml" relfile="Views/Property/Create.cshtml" line="15" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="138" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="139" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/PropertyController.cs" relfile="Controllers/PropertyController.cs" line="140" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Views/Project/ProjectStateUpdate.cshtml" relfile="Views/Project/ProjectStateUpdate.cshtml" line="15" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Views/Project/ProjectStateUpdate.cshtml" relfile="Views/Project/ProjectStateUpdate.cshtml" line="57" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="470" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="473" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="492" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="494" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="493" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="234" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="234" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="247" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="258" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="298" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="305" column="1" />
+      <Breakpoint file="/Users/Nadia/Projects/ArchitectureProjectManagement/Controllers/ProjectController.cs" relfile="Controllers/ProjectController.cs" line="309" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

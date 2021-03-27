@@ -15,12 +15,17 @@
     <div class="col-md-6">
         <h6>PROJECT DETAILS</h6>
         @Html.HiddenFor(model => Model.ProjectId)
-        <a asp-action="Edit" asp-controller="Project" class="btn btn-info" asp-route-id="@Model.ProjectId"><i class="fa " aria-hidden="true"></i>Update Project Details</a> 
-        <a asp-action="Index" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId"><i class="fa fa-trophy" aria-hidden="true"></i>View Project Progress</a> 
-        <!--a asp-page="/Details" class="btn-btn-info" asp-route-id="model.ProjectId">Details</a>-->
-        <!-- <a asp-page="/Delete" class="btn-btn-danger" asp-route-id="model.ProjectId">Delete</a> -->
-        <br/>
-        <br/>
+        @{ if (User.IsInRole("Draughtsman") || User.IsInRole("Administrators"))
+            {
+                <a asp-action="Edit" asp-controller="Project" class="btn btn-info" asp-route-id="@Model.ProjectId"><i class="fa " aria-hidden="true"></i>Update Project Details</a>
+                <a asp-action="Index" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId"><i class="fa fa-trophy" aria-hidden="true"></i>View Project Progress</a>
+                <a asp-action="EmailClient" asp-controller="Email" class="btn btn-info" asp-route-id="@Model.PropertyOwnerEmail"> Email Client</a>
+                }
+                else
+                {
+    <a asp-action="Index" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId"><i class="fa fa-trophy" aria-hidden="true"></i>View Project Progress</a> } }
+        <br />
+        <br />
         <div>
             <label><strong>@Html.DisplayNameFor(model => model.ProjectName)</strong></label>
             @Html.DisplayFor(model => model.ProjectName)
@@ -58,7 +63,7 @@
             @Html.DisplayFor(model => model.DateModified)
         </div>
         <br />
-       
+
     </div>
 
     <div class="col-md-6">
@@ -75,7 +80,7 @@
             <label><strong>@Html.DisplayNameFor(model => model.PropertyERF_LotNo)</strong></label>
             @Html.DisplayFor(model => model.PropertyERF_LotNo)
         </div>
-        <br/>
+        <br />
         <h6>CLIENT DETAILS</h6>
         <div>
             <label><strong>@Html.DisplayNameFor(model => model.PropertyOwnerFirstName)</strong></label>
@@ -90,9 +95,9 @@
             @Html.DisplayFor(model => model.PropertyOwnerEmail)
         </div>
         @* <div>
-            <label><strong>@Html.DisplayNameFor(model => model.PropertyOwnerContactNo)</strong></label>
-            @Html.DisplayFor(model => model.PropertyOwnerContactNo)
-        </div>*@
+                <label><strong>@Html.DisplayNameFor(model => model.PropertyOwnerContactNo)</strong></label>
+                @Html.DisplayFor(model => model.PropertyOwnerContactNo)
+            </div>*@
 
 
         <br />
@@ -106,16 +111,20 @@
             @Html.DisplayFor(model => model.DraughtsmanLastName)
         </div>
         @* <div>
-            <label><strong>@Html.DisplayNameFor(model => model.DraughtsmanContactNo)</strong></label>
-            @Html.DisplayFor(model => model.DraughtsmanContactNo)
-        </div>*@
+                <label><strong>@Html.DisplayNameFor(model => model.DraughtsmanContactNo)</strong></label>
+                @Html.DisplayFor(model => model.DraughtsmanContactNo)
+            </div>*@
         <div>
             <label><strong>@Html.DisplayNameFor(model => model.DraughtsmanEmail)</strong></label>
             @Html.DisplayFor(model => model.DraughtsmanEmail)
         </div>
     </div>
-    <a asp-action="Create" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId">Assign Project Milestones</a>
-</div>
+    @{ if (User.IsInRole("Draughtsman") || User.IsInRole("Administrators"))
+       {
+            <a asp-action="Create" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId">Assign Project Milestones</a>
+       }
+     }
+            </div>
 
 
 @section Scripts{

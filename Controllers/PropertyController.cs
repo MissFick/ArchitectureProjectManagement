@@ -27,7 +27,8 @@ namespace ArchitectureProjectManagement.Controllers
         private readonly IProjectRepository _projectRepo;
         private SiteUserManager<SiteUser> _siteUserManager;
         //private readonly SiteRoleManager<SiteRole> _siteRoleManager;
-        private readonly IAppUserRoleRepository _appRoleRepo;
+        private readonly IAppUserRoleRepository _appUserRoleRepo;
+        private readonly IAppRoleRepository _appRoleRepo;
 
 
         public PropertyController(IPropertyRepository repo,
@@ -36,7 +37,8 @@ namespace ArchitectureProjectManagement.Controllers
             ICompanyRepository companyRepo,
             SiteUserManager<SiteUser> siteUserManager,
             //SiteRoleManager<SiteRole> siteRoleManager,
-            IAppUserRoleRepository appRoleRepository
+            IAppUserRoleRepository appUserRoleRepo,
+            IAppRoleRepository appRoleRepo
             )
         {
             _repo = repo;
@@ -45,7 +47,8 @@ namespace ArchitectureProjectManagement.Controllers
             _companyRepo = companyRepo;
             _siteUserManager = siteUserManager;
             //_siteRoleManager = siteRoleManager;
-            _appRoleRepo = appRoleRepository;
+            _appUserRoleRepo = appUserRoleRepo;
+            _appRoleRepo = appRoleRepo;
         }
 
 
@@ -56,7 +59,11 @@ namespace ArchitectureProjectManagement.Controllers
             var allProperties = await _repo.GetAll();
             var tb_property = allProperties.ToList();
 
-            var propertyOwners = await _appRoleRepo.GetAllPropertyOwners();
+
+            var siteId = User.GetUserSiteIdAsGuid();
+            var propertyOwnerRole = await _appRoleRepo.GetPropertyOwnerRoleId(siteId);
+            var propertyOwnerRoleId = propertyOwnerRole.Id;
+            var propertyOwners = await _appUserRoleRepo.GetAllPropertyOwners(propertyOwnerRoleId);
             var propertyOwnersList = propertyOwners.ToList();
 
             var propertyList = new List<PropertyViewModel> { };
@@ -124,10 +131,13 @@ namespace ArchitectureProjectManagement.Controllers
         public async Task<IActionResult> Create()
         {
             var userId = User.GetUserIdAsGuid();
+            var siteId = User.GetUserSiteIdAsGuid();
 
             //Get All Users in Property Owner Role
             //var propertyOwners = await _projectRepo.getAllPropertyOwners();
-            var propertyOwners = await _appRoleRepo.GetAllPropertyOwners();
+            var propertyOwnerRole = await _appRoleRepo.GetPropertyOwnerRoleId(siteId);
+            var propertyOwnerRoleId = propertyOwnerRole.Id;
+            var propertyOwners = await _appUserRoleRepo.GetAllPropertyOwners(propertyOwnerRoleId);
           //  var propertyOwnersList = propertyOwners.ToList();
             List<PropertyOwnerDDListViewModel> propertyOwnerSelectList = new List<PropertyOwnerDDListViewModel> { };
             foreach (var propertyOwner in propertyOwners)
@@ -151,7 +161,6 @@ namespace ArchitectureProjectManagement.Controllers
                 
                 var userEmail = User.GetEmail();
                 var userDisplayName = User.GetEmail();
-                var siteId = User.GetUserSiteIdAsGuid();
 
                 /*KEEPING THIS HERE .. This snippet will give you all clients with properties 
                  * COULD BE HANDY FOR YOU FICK If the two ever diverge - doubt it backup if the other code fails
@@ -192,8 +201,8 @@ namespace ArchitectureProjectManagement.Controllers
                   {
                       PropertyOwnerId = Guid.Parse(entity.PropertyOwnerId);
                   };*/
-                string siteid = "1732d901-82c3-4c48-9e02-3049c8ea2738";
-                
+                //string siteid = "1732d901-82c3-4c48-9e02-3049c8ea2738";
+                var siteid = User.GetUserSiteIdAsGuid().ToString();
 
                 var property = _mapper.Map<Property>(entity);
                 property.SiteId = siteid;
@@ -253,8 +262,12 @@ namespace ArchitectureProjectManagement.Controllers
         {
             var property = await _repo.Get(id);
             var model = _mapper.Map<PropertyViewModel>(property);
-            
-            var propertyOwners = await _appRoleRepo.GetAllPropertyOwners();
+
+            var siteId = User.GetUserSiteIdAsGuid();
+            var propertyOwnerRole = await _appRoleRepo.GetPropertyOwnerRoleId(siteId);
+            var propertyOwnerRoleId = propertyOwnerRole.Id;
+            var propertyOwners = await _appUserRoleRepo.GetAllPropertyOwners(propertyOwnerRoleId);
+            //var propertyOwners = await _appUserRoleRepo.GetAllPropertyOwners();
             List<PropertyOwnerDDListViewModel> propertyOwnerSelectList = new List<PropertyOwnerDDListViewModel> { };
             foreach (var propertyOwner in propertyOwners)
             {
@@ -278,7 +291,7 @@ namespace ArchitectureProjectManagement.Controllers
 
                     var userEmail = User.GetEmail();
                     var userDisplayName = User.GetEmail();
-                    var siteId = User.GetUserSiteIdAsGuid();
+                 //   var siteId = User.GetUserSiteIdAsGuid();
 
                     /*KEEPING THIS HERE .. This snippet will give you all clients with properties 
                      * COULD BE HANDY FOR YOU FICK If the two ever diverge - doubt it backup if the other code fails
@@ -316,7 +329,8 @@ namespace ArchitectureProjectManagement.Controllers
         public async Task<IActionResult> Edit(PropertyViewModel entity)
         {
             //var userid = User.GetUserId();
-            string siteid = "1732d901-82c3-4c48-9e02-3049c8ea2738";
+            var siteId = User.GetUserSiteIdAsGuid().ToString();
+            //string siteid = "1732d901-82c3-4c48-9e02-3049c8ea2738";
             if  (!ModelState.IsValid)
             {
                 return View(entity);
@@ -335,7 +349,7 @@ namespace ArchitectureProjectManagement.Controllers
                     IsEstate = entity.IsEstate,
                     Complex_Estate_No = entity.Complex_Estate_No,
                     PropertyOwnerId = entity.PropertyOwnerId,
-                    SiteId = siteid
+                    SiteId = siteId
 
                 };
 

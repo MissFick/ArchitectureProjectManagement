@@ -1,12 +1,16 @@
 ﻿@model ArchitectureProjectManagement.Models.ProjectStatusItemViewModel
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 @Html.HiddenFor(model => model.ProjectId)
-<a asp-action="Edit" asp-controller="ProjectStatus" class="btn-btn-warning" asp-route-id="@Model.ProjectId">Update Project Progress</a> |
-<br/>
-<a asp-action="Details" asp-controller="Project" class="btn-btn-info" asp-route-id="@Model.ProjectId"> Back to Project Details</a> |
-
+@{ if (User.IsInRole("Draughtsman") || User.IsInRole("Administrators"))
+   {
+    <a asp-action="Edit" asp-controller="ProjectStatus" class="btn btn-warning" asp-route-id="@Model.ProjectId">Update Project Progress</a> <!--br/-->
+    <a asp-action="Details" asp-controller="Project" class="btn btn-info" asp-route-id="@Model.ProjectId"> Back to Project Details</a>
+   }
+   else
+   {
+     <a asp-action="Details" asp-controller="Project" class="btn btn-info" asp-route-id="@Model.ProjectId"> Back to Project Details</a>
+   }
+}
 
 <div class="row">
     <div class="col-md-6">
@@ -15,25 +19,24 @@
         {
             for (var i = 0; i < Model.ProjectItemStatuses.Count(); i++)
             {
-                <div class="list-group-item">
-                    @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectId)
-                    @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectItemId)
-                    @Html.DisplayFor(model => Model.ProjectItemStatuses[i].ProjectItem.ProjectItemName)
-                    @Html.DisplayFor(model => Model.ProjectItemStatuses[i].IsComplete)
+                 <div class="list-group-item">
+                  @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectId)
+                  @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectItemId)
+                  @Html.DisplayFor(model => Model.ProjectItemStatuses[i].ProjectItem.ProjectItemName)
+                  @Html.DisplayFor(model => Model.ProjectItemStatuses[i].IsComplete)
                 </div>
-            }
-
-        }
-        else
-        {
-           <br/><br/>
-            <a asp-action="Create" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId">Assign Project Milestones</a> 
-
-
-}
-
-
+             }
+         }
+         else
+            {
+                <br /><br />
+                <div>
+                    <a asp-action="Create" asp-controller="ProjectStatus" class="btn btn-info" asp-route-id="@Model.ProjectId">Assign Project Milestones</a>
+                </div>
+         }
     </div>
+    <br />
+    <br />
     <div class="col-md-6">
         <h6>PROJECT DETAILS</h6>
         <table>
@@ -47,8 +50,7 @@
                         }
 
                     }
-                  //  var complete = (counter / Model.ProjectItemStatuses.Count() * 100) + "px";
-                   // <td class="green" style="background-color:green; width: @complete"></td>
+                    
                 }
             </tr>
 
@@ -108,7 +110,7 @@
             <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyAddress)</strong></label>
             @Html.DisplayFor(model => model.Project.PropertyAddress)
         </div>
-        <br/>
+        <br />
         <h6>CLIENT DETAILS</h6>
         <div>
             <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyOwnerFirstName)</strong></label>
@@ -124,9 +126,9 @@
         </div>
 
         @* <div>
-            <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyOwnerContactNo)</strong></label>
-            @Html.DisplayFor(model => model.Project.PropertyOwnerContactNo)
-        </div>*@
+                <label><strong>@Html.DisplayNameFor(model => model.Project.PropertyOwnerContactNo)</strong></label>
+                @Html.DisplayFor(model => model.Project.PropertyOwnerContactNo)
+            </div>*@
         <br />
         <h6>DRAUGHTSMAN DETAILS</h6>
         <div>
@@ -147,17 +149,15 @@
         </div>
     </div>
 </div>
-<br/>
+<br />
 <div class="row">
     <div class="col-md-6">
-        
+
     </div>
     <div class="col-md-6">
-        
-    
+
+
     </div>
 </div>
 
-@{
 
-}

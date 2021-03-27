@@ -43,8 +43,9 @@ namespace ArchitectureProjectManagement.Controllers
         }
 
         //GET: ProjectState/Edit
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id)
         {
+
             try
             {
                 return RedirectToAction(nameof(Index));
@@ -54,6 +55,22 @@ namespace ArchitectureProjectManagement.Controllers
                 return View();
             }
         }
+
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ProjectStateViewModel projectState)
+        {
+            var project = away
+            try
+            {
+                //TO DO Add Delete Logic Here
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }*/
 
         public ActionResult Delete(int id)
         {

@@ -23,5 +23,7 @@ namespace ArchitectureProjectManagement.Data
         public DbSet<ProjectState> tb_ProjectState { get; set; }
         public DbSet<Property> tb_Property { get; set; }
         public DbSet<AppUserRole> cs_UserRole { get; set; }
+        public DbSet<AppRole> cs_Role { get; set; }
+
     }
 }

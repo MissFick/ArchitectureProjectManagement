@@ -1,0 +1,41 @@
+﻿@model ArchitectureProjectManagement.Models.ProjectStateProjectVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
+
+@{
+    ViewData["Title"] = "UpdateProjectState";
+}
+@Html.HiddenFor(model => model.ProjectId)
+<a asp-action="Details" asp-controller="Project" class="btn btn-warning" asp-route-id="@Model.ProjectId">Project Details</a> 
+<a asp-action="Index" asp-controller="Project" class="btn btn-info" asp-route-id="@Model.ProjectId"> Back</a> 
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.DisplayFor(model => Model.Project.ProjectName)
+
+                @* <label asp-for="Project.ProjectName" class="control-label"></label>
+        <input asp-for="Project.ProjectName" class="form-control" />
+        <span asp-validation-for="Project.ProjectName" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.ProjectStateId" class="control-label"></label>
+                @Html.DropDownListFor(n => n.Project.ProjectStateId, new SelectList(Model.StateSelectList, "Value", "Text"), "Select State", new { @class = "form-control" })
+                <span asp-validation-for="Project.ProjectStateId" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            @for (var i = 0; i < Model.ProjectItemStatuses.Count(); i++)
+            {
+              <div class="list-group-item">
+                  @Html.HiddenFor(model => Model.Project[i].ProjectId)
+                  @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectItemId)
+                  @Html.HiddenFor(model => Model.ProjectItemStatuses[i].ProjectItem.ProjectItemName)
+                  @Html.DisplayFor(model => Model.ProjectItemStatuses[i].ProjectItem.ProjectItemName)
+                  @Html.CheckBoxFor(model => Model.ProjectItemStatuses[i].IsComplete)
+              </div>}
+        </div>*@
+
+        </form>
+    </div>
+</div>

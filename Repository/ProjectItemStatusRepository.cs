@@ -65,7 +65,8 @@ namespace ArchitectureProjectManagement.Repository
 
         public async Task<bool> DoesExist(string id)
         {
-            return true;
+            var exists = await _dbContext.tb_ProjectItemStatus.AnyAsync();
+            return exists;
         }
 
         private object SomethingAsync()
